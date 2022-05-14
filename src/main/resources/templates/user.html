@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>User</title>
+</head>
+<body>
+<h1>User</h1>
+<form th:method="PATCH" th:action="@{/admin}" th:object="${user}">
+    <fieldset>
+        <div>
+            <label for="name">Id:</label>
+            <input type="text" th:field="*{id}" id="id" readonly/>
+        </div>
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" th:field="*{name}" id="name"/>
+        </div>
+        <div sec:authorize="hasRole('ADMIN')">
+            <p>Minimum name length is 2. Maximum is 20.</p>
+        </div>
+        <div>
+            <label for="age">Age:</label>
+            <input type="number" min="0" th:field="*{age}" id="age"/>
+        </div>
+        <div sec:authorize="hasRole('ADMIN')">
+            <p>Minimum age is 0.</p>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="text" th:field="*{password}" id="password"/>
+        </div>
+        <div sec:authorize="hasRole('ADMIN')">
+            <p>Minimum password length is 2.</p>
+        </div>
+<!--        <div>-->
+<!--            <input type="roles" th:field="*{roles}" id="roles"/>-->
+<!--&lt;!&ndash;            <input type="text" style="display: none;" th:field="*{roles}" id="roles"/>&ndash;&gt;-->
+<!--        </div>-->
+        <div sec:authorize="hasRole('ADMIN')">
+            <input type="submit" name="submitAddition" value="Edit User"/>
+        </div>
+    </fieldset>
+</form>
+</body>
+<br>
+<form th:method="GET" th:action="@{/logout}">
+    <input type="submit" name="logOut" value="Logout"/>
+</form>
+</html>
