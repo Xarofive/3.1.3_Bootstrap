@@ -35,7 +35,7 @@ public class AdminController {
     }
 
     @PostMapping
-    public String create(@ModelAttribute("userToAdd") @Valid User user, BindingResult bindingResult) {
+    public String create(@Valid User user, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             log.error("Ошибка в запросе");
@@ -53,7 +53,7 @@ public class AdminController {
     }
 
     @PatchMapping
-    public String update(@ModelAttribute("userToUpdate") @Valid User user, BindingResult bindingResult) {
+    public String update(@Valid User user, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             log.error("Ошибка в запросе");
