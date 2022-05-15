@@ -35,14 +35,14 @@ public class AdminController {
     }
 
     @PostMapping
-    public String create(@Valid User user, BindingResult bindingResult, @RequestParam Long[] roleList) {
+    public String create(@Valid User user, BindingResult bindingResult, @RequestParam Long[] roleIds) {
 
         if (bindingResult.hasErrors()) {
             log.error("Ошибка в запросе");
             return "redirect:/admin";
         }
 
-        userService.create(user, roleList);
+        userService.create(user, roleIds);
         return "redirect:/admin";
     }
 
@@ -53,14 +53,14 @@ public class AdminController {
     }
 
     @PatchMapping
-    public String update(@Valid User user, BindingResult bindingResult, @RequestParam Long[] roleList) {
+    public String update(@Valid User user, BindingResult bindingResult, @RequestParam Long[] roleIds) {
 
         if (bindingResult.hasErrors()) {
             log.error("Ошибка в запросе");
             return "redirect:/admin";
         }
 
-        userService.update(user, roleList);
+        userService.update(user, roleIds);
         return "redirect:/admin";
     }
 

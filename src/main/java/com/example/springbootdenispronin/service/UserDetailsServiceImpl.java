@@ -19,6 +19,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String name) {
         User user = userDao.showByName(name);
+        // тут, на самом деле, можно было обычного юзера-Entity отдать
         return new CurrentUser(user.getUsername(), user.getPassword(), user.getAge(), user.getAuthorities());
     }
 }
