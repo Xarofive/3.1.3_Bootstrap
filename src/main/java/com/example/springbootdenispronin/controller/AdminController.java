@@ -27,17 +27,11 @@ public class AdminController {
     public String index(Model model, Principal principal) {
         model.addAttribute("users", userService.getAll());
         model.addAttribute("user", new User());
-//        model.addAttribute("userToAdd", new User());
+        model.addAttribute("userToAdd", new User());
         model.addAttribute("roleAdminToAdd", new Role("ROLE_ADMIN"));
         model.addAttribute("roleUserToAdd", new Role("ROLE_USER"));
         model.addAttribute("admin", userService.showByName(principal.getName()));
         return "admin";
-    }
-
-    @GetMapping("/{id}")
-    public String editUser(Model model, @PathVariable("id") Long id) {
-        model.addAttribute("user", userService.get(id));
-        return "user";
     }
 
     @PostMapping
@@ -59,7 +53,7 @@ public class AdminController {
     }
 
     @PatchMapping
-    public String update(@ModelAttribute("user") @Valid User user, BindingResult bindingResult) {
+    public String update(@ModelAttribute("userToUpdate") @Valid User user, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             log.error("Ошибка в запросе");
