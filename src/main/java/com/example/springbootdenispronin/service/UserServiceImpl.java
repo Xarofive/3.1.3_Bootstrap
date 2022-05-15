@@ -37,7 +37,12 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public void create(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        // ПЕРЕДЕЛАТЬ РОЛИ
+//        if (user.getRoles().contains())
         user.setRoles(Collections.singleton(roleDao.getRoleByName("ROLE_USER")));
+
+//        user.setRoles(Collections.singleton(roleDao.getRoleByName("ROLE_ADMIN")));
+
         userDao.create(user);
         log.info("Пользователь с именем={} сохранен", user.getName());
     }

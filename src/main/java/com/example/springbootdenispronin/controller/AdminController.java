@@ -1,5 +1,6 @@
 package com.example.springbootdenispronin.controller;
 
+import com.example.springbootdenispronin.model.Role;
 import com.example.springbootdenispronin.model.User;
 import com.example.springbootdenispronin.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -9,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.security.Principal;
 
 @Controller
 @Slf4j
@@ -22,9 +24,13 @@ public class AdminController {
     }
 
     @GetMapping
-    public String index(Model model) {
+    public String index(Model model, Principal principal) {
         model.addAttribute("users", userService.getAll());
-        model.addAttribute("userToAdd", new User());
+        model.addAttribute("user", new User());
+//        model.addAttribute("userToAdd", new User());
+        model.addAttribute("roleAdminToAdd", new Role("ROLE_ADMIN"));
+        model.addAttribute("roleUserToAdd", new Role("ROLE_USER"));
+        model.addAttribute("admin", userService.showByName(principal.getName()));
         return "admin";
     }
 
