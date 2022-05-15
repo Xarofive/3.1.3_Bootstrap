@@ -51,8 +51,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User get(Long id) {
-        User user = userDao.get(id);
+    public User getUserWithRolesById(Long id) {
+        User user = userDao.getUserWithRolesById(id);
         log.info("Пользователь с id={} найден", id);
         return user;
     }

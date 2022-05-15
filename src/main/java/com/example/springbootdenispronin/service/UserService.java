@@ -12,7 +12,7 @@ public interface UserService {
 
     void update(User user, Long[] roleIds);
 
-    User get(Long id);
+    User getUserWithRolesById(Long id);
 
     void delete(Long id);
 

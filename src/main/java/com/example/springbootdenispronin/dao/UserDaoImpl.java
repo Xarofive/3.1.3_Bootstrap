@@ -33,19 +33,17 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User get(Long id) {
+    public User getUserWithRolesById(Long id) {
         return entityManager.find(User.class, id);
     }
 
     @Override
     public void delete(Long id) {
-        entityManager.remove(get(id));
+        entityManager.remove(getUserWithRolesById(id));
     }
 
-    // -
     @Override
     public User showByName(String name) {
-        // тут prepared надо использовать ???
         return entityManager
                 .createQuery("select u from User u join fetch u.roles r where u.name =?1 ", User.class)
                 .setParameter(1, name)
