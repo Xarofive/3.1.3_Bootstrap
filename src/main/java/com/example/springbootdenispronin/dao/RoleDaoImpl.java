@@ -11,21 +11,23 @@ import java.util.stream.Collectors;
 
 @Repository
 public class RoleDaoImpl implements RoleDao {
+
     @PersistenceContext
     private EntityManager entityManager;
-
-    @Override
-    public Role getRoleByName(String name) {
-        return entityManager.createQuery("select role from  Role role where role.role =: name", Role.class)
-                .setParameter("name",name)
-                .getSingleResult();
-    }
 
     @Override
     public Set<Role> findRolesByIds(Long[] roleIds) {
         return entityManager
                 .createQuery("select r from Role r where r.id in (:ids)", Role.class)
                 .setParameter("ids", Arrays.asList(roleIds))
+                .getResultStream()
+                .collect(Collectors.toSet());
+    }
+
+    @Override
+    public Set<Role> getAllRoles() {
+        return entityManager
+                .createQuery("FROM Role", Role.class)
                 .getResultStream()
                 .collect(Collectors.toSet());
     }
