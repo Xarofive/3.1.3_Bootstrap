@@ -148,11 +148,13 @@
                                             <input type="password" class="form-control" th:field="*{password}" id="password">
                                             <br>
                                             <label for="role" class="form-label"><b>Role:</b></label>
-                                            <select style="width: 100%;" required size="2" name="rolePatch" id="role"
-                                                    th:field="${user.roles}">
-                                                <option th:value="${roleAdminToAdd}">ADMIN</option>
-                                                <option selected th:value="${roleUserToAdd}">USER</option>
-                                            </select>
+                                            <div class="form-group">
+                                                <select multiple class="form-control" name="roleList"
+                                                        style="height: 60px" id="role">
+                                                    <option value="1">ADMIN</option>
+                                                    <option selected value="2">USER</option>
+                                                </select>
+                                            </div>
                                             <br>
                                             <input type="submit" class="btn btn-success btn-block" value="Add new user">
                                         </div>
@@ -201,16 +203,15 @@
                                     <input type="password" class="form-control" th:value="${user.password}"
                                            name="password" id="edPassword">
                                     <br>
-
-
-                                    <label for="rolePatch" class="form-label"><b>Role:</b></label>
-                                    <select style="width: 100%;" required size="2" name="rolePatch" id="rolePatch"
-                                            th:field="${user.roles}">
-                                        <option th:value="${roleAdminToAdd}">ADMIN</option>
-                                        <option selected th:value="${roleUserToAdd}">USER</option>
-                                    </select>
+                                    <label for="edRole" class="form-label"><b>Role:</b></label>
+                                    <div class="form-group">
+                                        <select multiple class="form-control" name="roleList"
+                                                style="height: 60px" id="edRole">
+                                            <option value="1">ADMIN</option>
+                                            <option selected value="2">USER</option>
+                                        </select>
+                                    </div>
                                     <br>
-
                                 </div>
                             </div>
                         </div>

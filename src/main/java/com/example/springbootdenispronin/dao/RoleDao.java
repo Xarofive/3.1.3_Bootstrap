@@ -3,9 +3,9 @@ package com.example.springbootdenispronin.dao;
 
 import com.example.springbootdenispronin.model.Role;
 
-import java.util.List;
+import java.util.Set;
 
 public interface RoleDao {
     Role getRoleByName(String name);
-    List<Role> getListRole();
+    Set<Role> findRolesById(Long[] ids);
 }

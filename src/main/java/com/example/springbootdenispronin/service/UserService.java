@@ -8,9 +8,9 @@ public interface UserService {
 
     List<User> getAll();
 
-    void create(User user);
+    void create(User user, Long[] roles);
 
-    void update(User user);
+    void update(User user, Long[] roles);
 
     User get(Long id);
 
