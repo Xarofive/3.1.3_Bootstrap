@@ -86,6 +86,7 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Name</th>
+                                        <th>Password</th>
                                         <th>Age</th>
                                         <th>Role</th>
                                         <th>Edit</th>
@@ -95,9 +96,10 @@
                                     <tbody>
                                     <div th:each="user : ${users}">
                                         <tr>
-                                            <td th:text="${user.getId()}">VALUE</td>
-                                            <td th:text="${user.getName()}">VALUE</td>
-                                            <td th:text="${user.getAge()}">VALUE</td>
+                                            <td th:text="${user.getId()}">Id</td>
+                                            <td th:text="${user.getName()}">Name</td>
+                                            <td th:text="${user.getPassword()}">Password</td>
+                                            <td th:text="${user.getAge()}">Age</td>
                                             <td>
                                                 <p th:each="role : ${user.getRoles()}">
                                                     <span th:text="${role.getRole()}">Roles</span>
